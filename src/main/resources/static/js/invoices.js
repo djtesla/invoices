@@ -33,16 +33,13 @@ window.onload = function () {
                 "Content-Type": "application/json"
             }
         })
-            .then(function (response) {
-                console.log("Success");
-                getInvoices();
-                input.value = "";
-                let messageParagraph = document.querySelector("#message-p");
-                messageParagraph.innerHTML = "Success save";
-            })
+    }
+    getInvoices();
+}
 
-    };
-
+function rowFunction(el) {
+    let id = el.parentNode.cells[0].textContent;
+    console.log(id);
 }
 
 function getInvoices() {
@@ -54,9 +51,9 @@ function getInvoices() {
         .then(function (jsonData) {
                 console.log(jsonData);
                 let invoicesTable = document.querySelector("#invoices-table");
-            let invoiceTableBody = document.querySelector("#invoice-table-body");
+                let invoicesTableBody = document.querySelector("#invoice-table-body");
 
-            invoiceTableBody.innerHTML = "";
+                invoicesTable.innerHTML = '';
 
                 // creates a <table> element and a <tbody> element
 
@@ -64,6 +61,7 @@ function getInvoices() {
                 // creating all cells
                 let cell;
                 let cellText;
+
 
                 for (let invoice of jsonData) {
                     // creates a table row
@@ -102,7 +100,14 @@ function getInvoices() {
                     let viewButton = document.createElement('button');
                     viewButton.className="btn-info btn";
                     viewButton.textContent = 'View items';
+
                     row.appendChild(viewButton);
+
+                    viewButton.addEventListener('click', function () {
+                        rowFunction(this)
+                    })
+
+
 
                     invoicesTable.appendChild(row);
                 }
@@ -110,6 +115,8 @@ function getInvoices() {
 
             }
         )
-    ;
+
 }
+
+
 
