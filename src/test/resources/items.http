@@ -1,0 +1,20 @@
+###
+GET http://localhost:8080/api/invoices/2/items
+Accept: application/json
+
+###
+POST http://localhost:8080/api/invoices/1/items
+Content-Type: application/json
+
+{
+  "productName": " drill",
+  "unitPrice": "15000",
+  "quantity": 8
+}
+###
+
+
+DELETE http://localhost:8080/api/invoices/2/items
+Accept: application/json
+
+###
