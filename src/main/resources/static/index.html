@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoices</title>
+    <link rel="stylesheet" href="lib/bootstrap-4.5.0-dist/bootstrap-4.5.0-dist/css/bootstrap.min.css">
+    <script src="js/invoices.js"></script>
+</head>
+<body>
+
+<h1>Invoices</h1>
+
+<div id=invoices-div></div>
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table id="invoices-table" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Customer name</th>
+                    <th>Issue date</th>
+                    <th>Due date</th>
+                    <th>Comment</th>
+                </tr>
+                </thead>
+                <tbody id="invoice-table-body"></tbody>
+            </table>
+
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+<div></div>
+
+<div id=create-invoice-div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <input id="customer-name-input"/>
+            <input id="issue-date-input"/>
+            <input id="due-date-input"/>
+            <input id="comment-input"/>
+            <button class="btn-info btn" id="create-invoice-button">Create invoice</button>
+        </div>
+    </div>
+</div>
+<div class="col-2"></div>
+</body>
+</html>
+
+
