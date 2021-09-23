@@ -51,7 +51,6 @@ function createInvoice() {
     let issueDateInput = document.querySelector("#issue-date-input");
     let dueDateInput = document.querySelector("#due-date-input");
     let commentInput = document.querySelector("#comment-input");
-    //let createInvoiceButton = document.querySelector("#create-invoice-button");
 
     let customerName = customerNameInput.value;
     let issueDate = issueDateInput.value;
@@ -70,7 +69,7 @@ function createInvoice() {
             "Content-Type": "application/json"
         }
     })
-    getInvoices();
+    // getInvoices();
 }
 
 
