@@ -27,3 +27,10 @@ Content-Type: application/json
   "dueDate": "2021-10-02"
 }
 ###
+DELETE http://localhost:8080/api/invoices
+Accept: application/json
+
+###
+DELETE http://localhost:8080/api/invoices/5
+Accept: application/json
+###

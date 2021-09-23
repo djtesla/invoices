@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8080/api/invoices/2/items
+GET http://localhost:8080/api/invoices/1/items
 Accept: application/json
 
 ###

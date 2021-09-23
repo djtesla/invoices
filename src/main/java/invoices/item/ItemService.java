@@ -32,8 +32,8 @@ public class ItemService {
         Invoice invoice = invoiceRepository.findById(invoice_id).orElseThrow(() -> new EntityNotFoundException("Invoice cannot be found by id " + invoice_id));
         double unitPrice = command.getUnitPrice();
         int quantity = command.getQuantity();
-        double totalPrice = unitPrice * quantity;
-        Item item = new Item(command.getProductName(), unitPrice, quantity, totalPrice);
+        double totalItemPrice = unitPrice * quantity;
+        Item item = new Item(command.getProductName(), unitPrice, quantity, totalItemPrice);
         itemRepository.save(item);
         invoice.addItem(item);
         return modelMapper.map(item, ItemDto.class);

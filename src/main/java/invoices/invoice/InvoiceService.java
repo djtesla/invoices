@@ -36,4 +36,13 @@ public class InvoiceService {
         invoiceRepository.save(invoice);
         return modelMapper.map(invoice, InvoiceDto.class);
     }
+
+    public void deleteAllInvoices() {
+        invoiceRepository.deleteAll();
+    }
+
+    public void deleteInvoiceById(long id) {
+        invoiceRepository.findById(id).orElseThrow (()->new EntityNotFoundException("Invoice cannot be found by id " + id));
+        invoiceRepository.deleteById(id);
+    }
 }

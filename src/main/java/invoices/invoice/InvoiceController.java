@@ -43,6 +43,18 @@ public class InvoiceController {
         return invoiceService.createInvoice(command);
     }
 
+    @DeleteMapping
+    //@Operation(summary = "list all invoices")
+    public void deleteAllInvoices() {
+         invoiceService.deleteAllInvoices();
+    }
+
+    @DeleteMapping("/{id}")
+    //@Operation(summary = "list all invoices")
+    public void deleteInvoiceById(@PathVariable ("id") long id) {
+        invoiceService.deleteInvoiceById(id);
+    }
+
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Problem> handleMachineNotFound(EntityNotFoundException enfe) {
         Problem problem = Problem.builder()
