@@ -7,7 +7,15 @@
 </head>
 
 <body>
-<h1>Invoices</h1>
+<h1 class="text-center">Invoices</h1>
+
+<div style="height:50px; width:100%; clear:both;"></div>
+
+<div class="col text-left">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create new invoice</button>
+</div>
+
+<div style="height:50px; width:100%; clear:both;"></div>
 
 <div id=invoices-div></div>
 <div class="container">
@@ -49,9 +57,7 @@
 <script src="js/invoices-functions.js"></script>
 
 <div class="col-2"></div>
-<div class="col text-center">
-<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create new invoice</button>
-</div>
+
 
 <!-- Modal -->
 <div class="modal fade bg-dark" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -82,7 +88,7 @@
                     </div>
                 </form>
 
-                ...
+                <span id="mandatory-data-missing-span" style="color:red"></span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -91,6 +97,8 @@
         </div>
     </div>
 </div>
+
+
 <script src="js/invoices-app.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
