@@ -31,6 +31,6 @@ DELETE http://localhost:8080/api/invoices
 Accept: application/json
 
 ###
-DELETE http://localhost:8080/api/invoices/5
+DELETE http://localhost:8080/api/invoices/19
 Accept: application/json
 ###
