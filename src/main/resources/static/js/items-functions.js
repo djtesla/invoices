@@ -1,11 +1,10 @@
-function getItems() {
+function getItems(invoiceId) {
+    console.log(invoiceId);
     //let listOfItemObj = []
     let itemsTableBody = document.querySelector('#items-table-body');
     itemsTableBody.innerHTML = '';
 
-    let invoiceId = localStorage.getItem('invoiceId');
-
-    let url = 'http://localhost:8080/api/invoices/{invoiceId}/items';
+    let url = 'http://localhost:8080/api/invoices/' + invoiceId + '/items';
     fetch(url)
         .then(function (response) {
             return response.json();
@@ -55,7 +54,7 @@ function createItem(invoiceId) {
     };
     console.log(data);
 
-    let url = 'http://localhost:8080/api/invoices/invoiceId/items';
+    let url = 'http://localhost:8080/api/invoices/' + invoiceId + '/items';
     fetch(url, {
         method: "POST",
         body: JSON.stringify(data),
