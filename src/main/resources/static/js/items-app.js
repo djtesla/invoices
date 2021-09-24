@@ -1,11 +1,16 @@
 window.onload = function () {
-    let invId = localStorage.getItem("invoiceId")
-//console.log('Ez az id: ' + invId);
 
-    getItems();
+    let listOfItemObj = [];
+
+    let invoice = JSON.parse(localStorage.getItem('invoice'));
+    console.log(invoice);
+    let invoiceId = invoice[0];
+
+
+    getInvoiceSummary(invoice);
 
     document.getElementById("create-item-button").addEventListener("click", function () {
-        createItem(invId);
+        createItem(invoiceId);
     })
 }
 
