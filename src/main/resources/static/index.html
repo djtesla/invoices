@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="lib/bootstrap-4.5.0-dist/bootstrap-4.5.0-dist/css/bootstrap.min.css">
 </head>
 
-<body>
-<div style="height:30px; width:100%; clear:both;"></div>
-<h1 class="text-center">Invoices</h1>
-<div style="height:30px; width:100%; clear:both;"></div>
+<body id="invoices-body" style="visibility:hidden">
 
-<div class="col text-center">
-<button class="btn btn-dark btn-lg" data-toggle="modal" data-target="#myModal">Create new invoice</button>
+<div style="height:25px; width:100%; clear:both;"></div>
+
+<h3 class="text-center">Invoices</h3>
+<div style="height:15px; width:100%; clear:both;"></div>
+
+<div class="text-center">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Create new invoice</button>
 </div>
 
-<div style="height:50px; width:100%; clear:both;"></div>
+<div style="height:30px; width:100%; clear:both;"></div>
 
-<div id=invoices-div></div>
+<div id="invoices-div"></div>
 <div class="container">
     <div class="row">
         <div class="col-2"></div>

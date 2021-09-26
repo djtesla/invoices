@@ -1,0 +1,1 @@
+create table invoice_items (id bigint not null auto_increment, product_name varchar(255), quantity integer not null, total_item_price double not null, unit_price double not null, invoice_id bigint, primary key (id), foreign key (invoice_id) references invoices (id));

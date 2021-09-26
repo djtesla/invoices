@@ -14,7 +14,7 @@ Content-Type: application/json
 ###
 
 
-DELETE http://localhost:8080/api/invoices/2/items
+DELETE http://localhost:8080/api/invoices/50/items
 Accept: application/json
 
 ###

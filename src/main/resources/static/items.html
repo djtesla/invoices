@@ -9,11 +9,31 @@
 
 </head>
 
-<body>
+<body id="items-body" style="visibility:hidden">
 <script src="js/items-functions.js"></script>
-<h1>Items</h1>
 
-<div id=invoice-header-div></div>
+<div style="height:15px; width:100%; clear:both;"></div>
+
+<div class="text-center">
+    <button type="button"  class="btn btn-primary" onclick="location.href='index.html'">Back to invoices</button>
+    <button type="button"  class="btn btn-primary" onclick="location.href='#create-form'">Create new invoice item</button>
+</div>
+
+<div style="height:25px; width:100%; clear:both;"></div>
+<div id=invoice-header-div>
+    <h3 class="text-center">Invoice summary</h3>
+    <p class="text-center">Customer name: <span id="customer-name-span" style="font-weight:bold;"></span></p>
+    <p class="text-center">Issue date :<span id="issue-date-span" style="font-weight:bold;"></span></p>
+    <p class="text-center"> Due date: <span id="due-date-span" style="font-weight:bold;"></span></p>
+    <p class="text-center">Comment: <span id="comment-span" style="font-weight:bold;"></span></p>
+    <p class="text-center">Invoice total in HUF: <span id="invoice-total-in-huf-span" style="font-weight:bold;"></span>
+    </p>
+    <p class="text-center">Invoice total in EUR: <span id="invoice-total-in-eur-span" style="font-weight:bold;"></span>
+    </p>
+</div>
+<div style="height:25px; width:100%; clear:both;"></div>
+<h3 class="text-center">Invoice items</h3>
+
 <div id=items-div></div>
 <div class="container">
     <div class="row">
@@ -27,7 +47,7 @@
                     <th>Unit price</th>
                     <th>Quantity</th>
                     <th>Total item price in HUF</th>
-                    <th>Total item price in USD</th>
+                    <th>Total item price in EUR</th>
                 </tr>
                 </thead>
                 <tbody id="items-table-body"></tbody>
@@ -39,18 +59,40 @@
 </div>
 <div></div>
 
-
-<div id=create-item-div class="col text-center">
-<input id="product-name-input"/>
-<input id="unit-price-input"/>
-<input id="quantity-input"/>
-<button class="btn-info btn" id="create-item-button">Create item</button>
-</div>
-
 <div style="height:50px; width:100%; clear:both;"></div>
-<div class="col text-center">
-    <button type="button" class="btn btn-primary" onclick="location.href='index.html'">Back to invoices</button>
+
+<div class="container" id="create-form">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h3>Creating a new item</h3>
+            <form action="">
+                <div class="form-group">
+                    <label for="">Product name</label>
+                    <input type="text" name="product-input" class="form-control" id="product-name-input">
+                </div>
+                <div class="form-group">
+                    <label for="">Unit price</label>
+                    <input type="number" name="unit-price-input" class="form-control" id="unit-price-input" value="1000">
+                </div>
+                <div class="form-group">
+                    <label for="">Quantity</label>
+                    <input type="number" name=quantity-input" class="form-control" id="quantity-input" value="1">
+                </div>
+
+                <button type="button" class="btn btn-primary" id="create-item-button">Create</button>
+            </form>
+            <div class="col-3"></div>
+        </div>
+    </div>
 </div>
+
+<div style="height:20px; width:100%; clear:both;"></div>
+
+
+
+<div style="height:20px; width:100%; clear:both;"></div>
+
 <script src="js/items-app.js"></script>
 </body>
 

@@ -1,5 +1,7 @@
+
 let listOfInvoiceObj = []
 
+getEurHufExchangeRate();
 
 getInvoices();
 

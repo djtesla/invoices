@@ -2,6 +2,8 @@ function getInvoiceSummary(invoice) {
 
     let listOfItemObj = []
 
+    let rate = localStorage.getItem("rate");
+
     console.log(invoice[2]);
 
     let itemsTableBody = document.querySelector('#items-table-body');
@@ -13,6 +15,8 @@ function getInvoiceSummary(invoice) {
     let commentSpan = document.querySelector('#comment-span');
     let invoiceTotalInHufSpan = document.querySelector('#invoice-total-in-huf-span');
     let invoiceTotalInEurSpan = document.querySelector('#invoice-total-in-eur-span');
+
+    let itemsBody = document.querySelector('#items-body');
 
     customerNameSpan.innerHTML = invoice[2];
     issueDateSpan.innerHTML = invoice[3];
@@ -32,16 +36,17 @@ function getInvoiceSummary(invoice) {
         .then(function (jsonData) {
                 console.log(jsonData);
                 let tableI = 0;
-                let totalItemPriceInEur = 0;
                 let totalHUF = 0;
                 let totalEUR = 0;
                 for (let item of jsonData) {
+                    let totalItemPriceInEur = (item.totalItemPrice/rate).toFixed(2);
+                    console.log(item.totalItemPrice);
+                    console.log(rate);
                     let cell;
                     let cellText;
                     tableI++;
                     let itemObj = [item.id, tableI, item.productName, item.unitPrice, item.quantity, item.totalItemPrice, totalItemPriceInEur]
                     totalHUF += item.unitPrice * item.quantity;
-                    totalHUF+= totalItemPriceInEur;
                     listOfItemObj.push(itemObj);
                     let row = document.createElement("tr");
                     itemObj[1] = tableI;
@@ -55,7 +60,10 @@ function getInvoiceSummary(invoice) {
                     itemsTableBody.appendChild(row);
                 }
             invoiceTotalInHufSpan.innerHTML = totalHUF;
+            totalEUR = (totalHUF / rate).toFixed(2);
                 invoiceTotalInEurSpan.innerHTML = totalEUR;
+            itemsBody.style.visibility="visible";
+
             }
         )
 }
@@ -84,6 +92,7 @@ function createItem(invoiceId) {
             "Content-Type": "application/json"
         }
     })
+    location.reload();
 
 }
 

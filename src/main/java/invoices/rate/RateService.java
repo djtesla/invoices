@@ -1,28 +1,24 @@
-package invoices;
+package invoices.rate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.modelmapper.ModelMapper;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import mnb.MNBArfolyamServiceSoap;
+import mnb.MNBArfolyamServiceSoapImpl;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.Calendar;
 
-@SpringBootApplication
-public class InvoicesApplication {
+@Service
+public class RateService {
 
-
-    public static void main(String[] args) {
-        SpringApplication.run(InvoicesApplication.class, args);
-
-        mnb.MNBArfolyamServiceSoapImpl impl = new mnb.MNBArfolyamServiceSoapImpl();
-        mnb.MNBArfolyamServiceSoap service = impl.getCustomBindingMNBArfolyamServiceSoap();
+    public double getActualHufEurExchangeRate() {
+        MNBArfolyamServiceSoapImpl impl = new mnb.MNBArfolyamServiceSoapImpl();
+        MNBArfolyamServiceSoap service = impl.getCustomBindingMNBArfolyamServiceSoap();
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate date = LocalDate.now();
+
             if (date.get(ChronoField.DAY_OF_WEEK) == Calendar.SATURDAY) {
                 date = date.minusDays(2);
             } else if (date.get(ChronoField.DAY_OF_WEEK) == Calendar.SUNDAY) {
@@ -35,22 +31,11 @@ public class InvoicesApplication {
             String[] respArr2 = respArr[1].split("</Rate></Day");
             respArr2[0] = respArr2[0].replace(",", ".");
             double rate = Double.parseDouble(respArr2[0]);
-            System.out.println(rate);
+            return rate;
         } catch (Exception e) {
-            System.err.print(e);
+            throw new IllegalArgumentException("Rate is not defined");
         }
     }
 
-
-    @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
-    }
-
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper().findAndRegisterModules();
-    }
-
-
 }
+

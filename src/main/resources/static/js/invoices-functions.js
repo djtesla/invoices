@@ -1,6 +1,7 @@
 function getInvoices() {
     let invoicesTable = document.querySelector("#invoices-table");
     let invoicesTableBody = document.querySelector("#invoice-table-body");
+    let invoicesBody = document.querySelector('#invoices-body');
 
     invoicesTableBody.innerHTML = '';
 
@@ -18,7 +19,7 @@ function getInvoices() {
                     let cell;
                     let cellText;
                     tableI++;
-                    let invoiceObj = [invoice.id, tableI, invoice.customerName, invoice.issueDate, invoice.dueDate,invoice.comment]
+                    let invoiceObj = [invoice.id, tableI, invoice.customerName, invoice.issueDate, invoice.dueDate, invoice.comment]
                     listOfInvoiceObj.push(invoiceObj);
                     let row = document.createElement("tr");
                     invoiceObj[1] = tableI;
@@ -37,18 +38,17 @@ function getInvoices() {
 
 
                     let viewButton = document.createElement('button');
-                    viewButton.className = "btn-info btn";
+                    viewButton.className = "btn btn-primary";
                     viewButton.textContent = 'View items';
                     row.appendChild(viewButton);
                     viewButton.addEventListener('click', function () {
                         viewItems(this)
                     })
                     invoicesTableBody.appendChild(row);
-
                 }
-
             }
         )
+    invoicesBody.style.visibility = "visible";
 }
 
 function createInvoice() {
@@ -74,14 +74,17 @@ function createInvoice() {
             "Content-Type": "application/json"
         }
     })
-    // getInvoices();
+    location.reload();
 }
 
 
 function viewItems(el) {
     let i = el.parentNode.cells[0].textContent;
-    let invoiceId = listOfInvoiceObj[i-1][0];
-    localStorage.setItem("invoiceId",invoiceId);
+    let invoice = listOfInvoiceObj[i - 1]
+    console.log(invoice)
+    localStorage.setItem('invoice', JSON.stringify(invoice));
+
+    //localStorage.setItem("invoiceId",invoiceId);
     window.location.href = "items.html";
 
 }
@@ -92,11 +95,9 @@ function checkMandatories(e) {
     let issueDateInput = document.querySelector("#issue-date-input");
     let dueDateInput = document.querySelector("#due-date-input");
     let commentInput = document.querySelector("#comment-input");
-
     if (customerNameInput.value == '' || issueDateInput.vale == '' || dueDateInput.value == '') {
         let mandatoryDataMissingSpan = document.querySelector("#mandatory-data-missing-span");
-        mandatoryDataMissingSpan.innerHTML='Note that customer name, issue date and due date are mandatory!'
-
+        mandatoryDataMissingSpan.innerHTML = 'Note that customer name, issue date and due date are mandatory!'
         return;
     }
     $('#myModal').modal('hide');
@@ -105,5 +106,23 @@ function checkMandatories(e) {
     $('#myModal2').modal('show');
     getInvoices();
 }
+
+
+function getEurHufExchangeRate() {
+    let url = 'http://localhost:8080/api/invoices/rate';
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (jsonData) {
+                //console.log(jsonData);
+
+
+              let rate = jsonData;
+              console.log(rate)
+            localStorage.setItem("rate", rate)
+            }
+        )}
+
 
 
